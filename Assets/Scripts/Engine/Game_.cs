@@ -3,13 +3,29 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class Game_ : MonoBehaviour {
-    // Start is called before the first frame update
+    public static Game_ instance;
+    public Rule_ rule_;
+    public Ui_ ui;
+
+    private void Awake() {
+        instance = this;
+    }
+
     void Start() {
-
+        SetRefreshRate();
     }
 
-    // Update is called once per frame
-    void Update() {
 
+
+
+    void SetRefreshRate() {
+        //When dragging an item, if the refresh rate is not set, the frame rate becomes low.
+        Resolution[] resolutions = Screen.resolutions;
+        int maxRefreshRate = 60;
+        foreach (var res in resolutions) {
+            if (res.refreshRate > maxRefreshRate) maxRefreshRate = res.refreshRate;
+        }
+        Application.targetFrameRate = maxRefreshRate;
     }
+
 }
