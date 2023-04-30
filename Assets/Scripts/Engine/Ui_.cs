@@ -2,10 +2,11 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
+using UnityEngine.UI;
 public class Ui_ : MonoBehaviour {
-    [Header("ShopKeeper Interaction")]
-    public GameObject promptTextObject;
-    public GameObject dialoguePanelObject; // Assign the DialoguePanel object in the Inspector
-    public string[] dialogueLines; // Add your dialogue lines in the Inspector
+    [Header("Dialogue Objects References")]
+    public GameObject promptTextPrefab;
+    public GameObject dialoguePanelObject;
     public TextMeshProUGUI dialogueText;
+    public Image avatar;
 }
