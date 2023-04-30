@@ -9,10 +9,17 @@ public class Player_ : MonoBehaviour {
     private Rigidbody2D rb;
     private Animator animator;
     public event Action OnInteractKeyPressed;
+    private Inventory_ inventory;
+    [Header("Animator Controllers")]
+    public RuntimeAnimatorController playerMainController;
+    public RuntimeAnimatorController playerSwordController;
+    public RuntimeAnimatorController playerBlueController;
+    public RuntimeAnimatorController playerSwordBlueController;
 
     void Start() {
         rb = GetComponent<Rigidbody2D>();
         animator = GetComponent<Animator>();
+        inventory = Game_.instance.inventory; 
     }
 
     void Update() {
@@ -45,6 +52,23 @@ public class Player_ : MonoBehaviour {
     void MoveCharacter() {
         if (Game_.instance.rule_.fsm.State == States.Game) {
             rb.MovePosition(rb.position + movement * moveSpeed * Time.fixedDeltaTime);
+        }
+    }
+    public void UpdateAnimatorBasedOnItems() {
+        Dictionary<(int, int), RuntimeAnimatorController> itemCombinations = new Dictionary<(int, int), RuntimeAnimatorController> {
+            {(1, 0), playerSwordController},
+            {(3, 0), playerBlueController},
+            {(1, 3), playerSwordBlueController}
+        };
+
+        int firstItemId = inventory.HasItem(1) ? 1 : inventory.HasItem(3) ? 3 : 0;
+        int secondItemId = inventory.HasItem(3) && firstItemId == 1 ? 3 : 0;
+
+        RuntimeAnimatorController animatorController;
+        if (itemCombinations.TryGetValue((firstItemId, secondItemId), out animatorController)) {
+            animator.runtimeAnimatorController = animatorController;
+        } else {
+            animator.runtimeAnimatorController = playerMainController;
         }
     }
 }

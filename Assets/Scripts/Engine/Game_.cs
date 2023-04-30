@@ -6,6 +6,8 @@ public class Game_ : MonoBehaviour {
     public static Game_ instance;
     public Rule_ rule_;
     public Ui_ ui;
+    public Inventory_ inventory; 
+
 
     private void Awake() {
         instance = this;

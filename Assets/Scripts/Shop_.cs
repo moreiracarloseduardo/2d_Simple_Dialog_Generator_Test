@@ -14,15 +14,8 @@ public class Shop_ : MonoBehaviour {
     void Start() {
         closeShopButton.onClick.AddListener(() => CloseShop());
         player = GameObject.FindWithTag("Player").GetComponent<Player_>();
-        // player.OnInteractKeyPressed += OpenShop;
         shopPanel.SetActive(false);
         SetupShopItems();
-    }
-
-    void OpenShop() {
-        if (Vector2.Distance(transform.position, player.transform.position) <= 2f) {
-            shopPanel.SetActive(true);
-        }
     }
 
     void SetupShopItems() {
@@ -35,6 +28,7 @@ public class Shop_ : MonoBehaviour {
             shopItem.itemSprite = itemData.itemSprite;
         }
     }
+
     void CloseShop() {
         shopPanel.SetActive(false);
     }

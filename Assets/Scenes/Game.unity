@@ -17096,6 +17096,50 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!1 &574404307
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 574404308}
+  - component: {fileID: 574404309}
+  m_Layer: 0
+  m_Name: Inventory
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &574404308
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 574404307}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 2010685583}
+  m_RootOrder: 2
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &574404309
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 574404307}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 359a9e3e152688449a265e1e075fef5e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &575574902
 GameObject:
   m_ObjectHideFlags: 0
@@ -49301,6 +49345,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   moveSpeed: 2
+  playerMainController: {fileID: 9100000, guid: 739c6a29f02de5240a3b64c83aa7f30b, type: 2}
+  playerSwordController: {fileID: 9100000, guid: b29dff1c7d32cb64a81d2f3eefb99ffc, type: 2}
+  playerBlueController: {fileID: 9100000, guid: dbb2e783608905f43b2b0d26a4a21dca, type: 2}
+  playerSwordBlueController: {fileID: 9100000, guid: 0fe52418dc13ad74ab457489c4340f1d, type: 2}
 --- !u!95 &1613787902
 Animator:
   serializedVersion: 5
@@ -49311,7 +49359,7 @@ Animator:
   m_GameObject: {fileID: 1613787897}
   m_Enabled: 1
   m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: b29dff1c7d32cb64a81d2f3eefb99ffc, type: 2}
+  m_Controller: {fileID: 9100000, guid: 739c6a29f02de5240a3b64c83aa7f30b, type: 2}
   m_CullingMode: 0
   m_UpdateMode: 0
   m_ApplyRootMotion: 0
@@ -60565,6 +60613,7 @@ Transform:
   m_Children:
   - {fileID: 277965874}
   - {fileID: 94271463}
+  - {fileID: 574404308}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -60582,6 +60631,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   rule_: {fileID: 94271464}
   ui: {fileID: 277965875}
+  inventory: {fileID: 574404309}
 --- !u!1 &2012089458
 GameObject:
   m_ObjectHideFlags: 0
