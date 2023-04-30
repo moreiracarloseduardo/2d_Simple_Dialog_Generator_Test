@@ -9,12 +9,14 @@ public class ShopItem_ : MonoBehaviour {
     public int price;
     public string itemName;
     public Sprite itemSprite;
+    public Image productImage; 
     public Button buyButton;
     public TMP_Text priceText;
 
     void Start() {
         buyButton.onClick.AddListener(() => PurchaseItem());
         priceText.text = price.ToString();
+        productImage.sprite = itemSprite;
     }
 
     public void PurchaseItem() {
