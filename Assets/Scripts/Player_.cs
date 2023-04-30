@@ -38,6 +38,8 @@ public class Player_ : MonoBehaviour {
     }
 
     void MoveCharacter() {
-        rb.MovePosition(rb.position + movement * moveSpeed * Time.fixedDeltaTime);
+        if (Game_.instance.rule_.fsm.State == States.Game) {
+            rb.MovePosition(rb.position + movement * moveSpeed * Time.fixedDeltaTime);
+        }
     }
 }
