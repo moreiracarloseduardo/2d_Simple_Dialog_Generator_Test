@@ -4,20 +4,25 @@ using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
 
+[System.Serializable]
+public class DialogueEntry {
+    public bool isPlayer;
+    public string text;
+}
+
 public class DialogController_ : MonoBehaviour {
     public float interactionDistance = 1.5f;
-    private TextMeshProUGUI promptText;
     private Transform playerTransform;
 
     private TMP_Text dialogueText;
     private int currentLine = 0;
     private bool isDialogueActive = false;
     private bool waitForPlayerInput = false;
-    [SerializeField] private string[] dialogueLines; 
-    [SerializeField] Sprite currentAvatar; 
+    [SerializeField] private DialogueEntry[] dialogueEntries;
+    [SerializeField] private Sprite npcAvatar;
+    [SerializeField] private Sprite playerAvatar;
 
     private GameObject promptTextInstance;
-    
 
     void Start() {
         playerTransform = GameObject.FindWithTag("Player").transform;
@@ -30,8 +35,8 @@ public class DialogController_ : MonoBehaviour {
 
         dialogueText = Game_.instance.ui.dialogueText;
         Game_.instance.ui.dialoguePanelObject.SetActive(false);
-
     }
+
     void Update() {
         CheckForPlayerInteraction();
     }
@@ -56,19 +61,20 @@ public class DialogController_ : MonoBehaviour {
 
     void StartDialogue() {
         isDialogueActive = true;
-        Game_.instance.ui.avatar.sprite = currentAvatar;
+        Game_.instance.ui.avatar.sprite = dialogueEntries[currentLine].isPlayer ? playerAvatar : npcAvatar;
         Game_.instance.ui.dialoguePanelObject.SetActive(true);
         promptTextInstance.SetActive(false);
         currentLine = 0;
-        StartCoroutine(TypewriterEffect(dialogueLines[currentLine]));
+        StartCoroutine(TypewriterEffect(dialogueEntries[currentLine].text));
     }
 
     void AdvanceDialogue() {
         if (waitForPlayerInput) {
             currentLine++;
 
-            if (currentLine < dialogueLines.Length) {
-                StartCoroutine(TypewriterEffect(dialogueLines[currentLine]));
+            if (currentLine < dialogueEntries.Length) {
+                Game_.instance.ui.avatar.sprite = dialogueEntries[currentLine].isPlayer ? playerAvatar : npcAvatar;
+                StartCoroutine(TypewriterEffect(dialogueEntries[currentLine].text));
             } else {
                 EndDialogue();
             }
@@ -89,10 +95,11 @@ public class DialogController_ : MonoBehaviour {
             yield return new WaitForSeconds(0.03f);
         }
 
-        yield return new WaitForSeconds(3f);
+        yield return new WaitForSeconds(2f);
         waitForPlayerInput = true;
         AdvanceDialogue();
     }
+
     void OnDestroy() {
         // Destrua a instância do promptText quando o NPC for destruído
         if (promptTextInstance != null) {
