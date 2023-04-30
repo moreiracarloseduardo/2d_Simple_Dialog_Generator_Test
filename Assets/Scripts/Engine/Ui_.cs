@@ -9,4 +9,6 @@ public class Ui_ : MonoBehaviour {
     public GameObject dialoguePanelObject;
     public TextMeshProUGUI dialogueText;
     public Image avatar;
+    [Header("Shop")]
+    public GameObject shopObject;
 }
