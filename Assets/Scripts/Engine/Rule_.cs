@@ -12,7 +12,9 @@ public class Rule_ : MonoBehaviour {
         get { return coins; }
         set {
             coins = value;
-            UpdateCoinsUI();
+            PlayerPrefs.SetInt("Coins", coins);
+            PlayerPrefs.Save();
+            Game_.instance.ui.coinsTotalText.text = coins.ToString();
         }
     }
 
@@ -20,7 +22,14 @@ public class Rule_ : MonoBehaviour {
         fsm = StateMachine<States>.Initialize(this);
         fsm.ChangeState(States.Game);
     }
-    private void UpdateCoinsUI() {
-        Game_.instance.ui.coinsTotalText.text = coins.ToString();
+    void Start() {
+        LoadCoins();
+    }
+    private void LoadCoins() {
+        if (PlayerPrefs.HasKey("Coins")) {
+            Coins = PlayerPrefs.GetInt("Coins");
+        } else {
+            Coins = 0;
+        }
     }
 }
