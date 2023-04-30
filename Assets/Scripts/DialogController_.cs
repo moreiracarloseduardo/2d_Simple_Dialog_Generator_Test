@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
+using System;
 
 [System.Serializable]
 public class DialogueEntry {
@@ -12,6 +13,7 @@ public class DialogueEntry {
 
 public class DialogController_ : MonoBehaviour {
     public float interactionDistance = 1.5f;
+    public event Action OnDialogueEnd;
     private Transform playerTransform;
 
     private TMP_Text dialogueText;
@@ -85,7 +87,9 @@ public class DialogController_ : MonoBehaviour {
         isDialogueActive = false;
         Game_.instance.ui.dialoguePanelObject.SetActive(false);
         promptTextInstance.SetActive(true);
+        OnDialogueEnd?.Invoke();
     }
+
 
     IEnumerator TypewriterEffect(string text) {
         waitForPlayerInput = false;
