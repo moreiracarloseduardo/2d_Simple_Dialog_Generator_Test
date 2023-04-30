@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -7,6 +8,7 @@ public class Player_ : MonoBehaviour {
     private Vector2 movement;
     private Rigidbody2D rb;
     private Animator animator;
+    public event Action OnInteractKeyPressed;
 
     void Start() {
         rb = GetComponent<Rigidbody2D>();
@@ -16,6 +18,9 @@ public class Player_ : MonoBehaviour {
     void Update() {
         ProcessInput();
         UpdateAnimatorParameters();
+        if (Input.GetKeyDown(KeyCode.Return)) {
+            OnInteractKeyPressed?.Invoke();
+        }
     }
 
     void FixedUpdate() {
@@ -38,6 +43,8 @@ public class Player_ : MonoBehaviour {
     }
 
     void MoveCharacter() {
-        rb.MovePosition(rb.position + movement * moveSpeed * Time.fixedDeltaTime);
+        if (Game_.instance.rule_.fsm.State == States.Game) {
+            rb.MovePosition(rb.position + movement * moveSpeed * Time.fixedDeltaTime);
+        }
     }
 }
