@@ -11,4 +11,8 @@ public class Ui_ : MonoBehaviour {
     public Image avatar;
     [Header("Shop")]
     public GameObject shopObject;
+    [Header("Coins")]
+    public GameObject coinsObject;
+    public TextMeshProUGUI coinsTotalText;
+    
 }
