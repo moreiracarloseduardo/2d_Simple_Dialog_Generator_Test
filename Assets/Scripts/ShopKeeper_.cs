@@ -11,13 +11,14 @@ public class ShopKeeper_ : MonoBehaviour {
     private TMP_Text dialogueText;
     private int currentLine = 0;
     private bool isDialogueActive = false;
+    private bool waitForPlayerInput = false;
 
     void Start() {
         playerTransform = GameObject.FindWithTag("Player").transform;
         promptText = Game_.instance.ui.promptTextObject.GetComponentInChildren<TextMeshProUGUI>();
         promptText.enabled = false;
 
-        dialogueText = Game_.instance.ui.dialoguePanelObject.transform.Find("DialogueText").GetComponent<TMP_Text>();
+        dialogueText = Game_.instance.ui.dialogueText.GetComponent<TMP_Text>();
         Game_.instance.ui.dialoguePanelObject.SetActive(false);
     }
 
@@ -47,16 +48,18 @@ public class ShopKeeper_ : MonoBehaviour {
         Game_.instance.ui.dialoguePanelObject.SetActive(true);
         promptText.enabled = false;
         currentLine = 0;
-        dialogueText.text = Game_.instance.ui.dialogueLines[currentLine];
+        StartCoroutine(TypewriterEffect(Game_.instance.ui.dialogueLines[currentLine]));
     }
 
     void AdvanceDialogue() {
-        currentLine++;
+        if (waitForPlayerInput) {
+            currentLine++;
 
-        if (currentLine < Game_.instance.ui.dialogueLines.Length) {
-            dialogueText.text = Game_.instance.ui.dialogueLines[currentLine];
-        } else {
-            EndDialogue();
+            if (currentLine < Game_.instance.ui.dialogueLines.Length) {
+                StartCoroutine(TypewriterEffect(Game_.instance.ui.dialogueLines[currentLine]));
+            } else {
+                EndDialogue();
+            }
         }
     }
 
@@ -64,5 +67,17 @@ public class ShopKeeper_ : MonoBehaviour {
         isDialogueActive = false;
         Game_.instance.ui.dialoguePanelObject.SetActive(false);
         promptText.enabled = true;
+    }
+    IEnumerator TypewriterEffect(string text) {
+        waitForPlayerInput = false;
+        dialogueText.text = "";
+        foreach (char letter in text.ToCharArray()) {
+            dialogueText.text += letter;
+            yield return new WaitForSeconds(0.03f); 
+        }
+
+        yield return new WaitForSeconds(3f);
+        waitForPlayerInput = true;
+        AdvanceDialogue();
     }
 }
