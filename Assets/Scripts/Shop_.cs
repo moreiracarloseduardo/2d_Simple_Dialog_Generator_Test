@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using System.Linq;
 
 public class Shop_ : MonoBehaviour {
     public Button closeShopButton;
@@ -14,15 +15,12 @@ public class Shop_ : MonoBehaviour {
     void Start() {
         closeShopButton.onClick.AddListener(() => CloseShop());
         player = GameObject.FindWithTag("Player").GetComponent<Player_>();
-        // player.OnInteractKeyPressed += OpenShop;
         shopPanel.SetActive(false);
+        Game_.instance.ui.MyItemsPanelObject.SetActive(false);
         SetupShopItems();
     }
-
-    void OpenShop() {
-        if (Vector2.Distance(transform.position, player.transform.position) <= 2f) {
-            shopPanel.SetActive(true);
-        }
+    public ItemData GetItemDataById(int itemId) {
+        return itemsData.FirstOrDefault(item => item.itemId == itemId);
     }
 
     void SetupShopItems() {
@@ -35,8 +33,10 @@ public class Shop_ : MonoBehaviour {
             shopItem.itemSprite = itemData.itemSprite;
         }
     }
+
     void CloseShop() {
         shopPanel.SetActive(false);
+        Game_.instance.ui.MyItemsPanelObject.SetActive(false);
     }
 
     [System.Serializable]

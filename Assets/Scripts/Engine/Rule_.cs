@@ -29,7 +29,7 @@ public class Rule_ : MonoBehaviour {
         if (PlayerPrefs.HasKey("Coins")) {
             Coins = PlayerPrefs.GetInt("Coins");
         } else {
-            Coins = 0;
+            Coins = 60;
         }
     }
 }

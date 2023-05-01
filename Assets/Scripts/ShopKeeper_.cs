@@ -17,6 +17,7 @@ public class ShopKeeper_ : MonoBehaviour {
 
     private void OpenShop() {
         Game_.instance.ui.shopObject.SetActive(true);
+        Game_.instance.ui.MyItemsPanelObject.SetActive(true);
     }
 
 }
