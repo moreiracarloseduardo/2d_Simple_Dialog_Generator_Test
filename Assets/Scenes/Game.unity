@@ -2541,6 +2541,14 @@ PrefabInstance:
       propertyPath: closeShopButton
       value: 
       objectReference: {fileID: 1281300462}
+    - target: {fileID: 5674289930163722707, guid: f13e4d521ac673d4d92d476b662a6b05, type: 3}
+      propertyPath: itemsData.Array.data[1].price
+      value: 545
+      objectReference: {fileID: 0}
+    - target: {fileID: 5674289930163722707, guid: f13e4d521ac673d4d92d476b662a6b05, type: 3}
+      propertyPath: itemsData.Array.data[3].price
+      value: 696
+      objectReference: {fileID: 0}
     - target: {fileID: 5674289930163722710, guid: f13e4d521ac673d4d92d476b662a6b05, type: 3}
       propertyPath: m_RootOrder
       value: 5
