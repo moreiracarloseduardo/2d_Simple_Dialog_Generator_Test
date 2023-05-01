@@ -66,7 +66,8 @@ public class DialogController_ : MonoBehaviour {
         Game_.instance.ui.avatar.sprite = dialogueEntries[currentLine].isPlayer ? playerAvatar : npcAvatar;
         Game_.instance.ui.dialoguePanelObject.SetActive(true);
         promptTextInstance.SetActive(false);
-        currentLine = 0;
+        // Remova a linha abaixo
+        // currentLine = 0;
         StartCoroutine(TypewriterEffect(dialogueEntries[currentLine].text));
     }
 
@@ -88,6 +89,7 @@ public class DialogController_ : MonoBehaviour {
         Game_.instance.ui.dialoguePanelObject.SetActive(false);
         promptTextInstance.SetActive(true);
         OnDialogueEnd?.Invoke();
+        currentLine = 0;
     }
 
 
