@@ -13,6 +13,7 @@ public class Coins_ : MonoBehaviour {
 
     private void CollectCoin() {
         Game_.instance.rule_.Coins += coinValue;
+        Game_.instance.audioFX.audioSourceMain.PlayOneShot(Game_.instance.audioFX.coinAudioClip);
         Destroy(gameObject);
     }
 }

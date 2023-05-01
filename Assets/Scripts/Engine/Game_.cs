@@ -8,6 +8,7 @@ public class Game_ : MonoBehaviour {
     public Ui_ ui;
     public Inventory_ inventory; 
     public Shop_ shop;
+    public Audio_ audioFX;
 
 
     private void Awake() {
