@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using MonsterLove.StateMachine;
 
-public enum States { Start, Game, End, Win, Lose, Dialogue, Shop };
+public enum States { Start, Game, End, Win, Lose, Dialogue, Shop, Pause };
 
 public class Rule_ : MonoBehaviour {
     public StateMachine<States> fsm;
@@ -25,11 +25,20 @@ public class Rule_ : MonoBehaviour {
     void Start() {
         LoadCoins();
     }
+    void Update() {
+        if (Input.GetKeyDown(KeyCode.Escape)) {
+            if (fsm.State == States.Game) {
+                PauseGame();
+            } else if (fsm.State == States.Pause) {
+                ResumeGame();
+            }
+        }
+    }
     private void LoadCoins() {
         if (PlayerPrefs.HasKey("Coins")) {
             Coins = PlayerPrefs.GetInt("Coins");
         } else {
-            Coins = 60;
+            Coins = 10;
         }
     }
 
@@ -39,4 +48,20 @@ public class Rule_ : MonoBehaviour {
         fsm.ChangeState(States.Game);
         Game_.instance.ui.startUi.SetActive(false);
     }
+    public void PauseGame() {
+        fsm.ChangeState(States.Pause);
+    }
+    void Pause_Enter() {
+        Game_.instance.ui.pauseUi.SetActive(true);
+        Time.timeScale = 0f;
+    }
+
+    void Pause_Exit() {
+        Game_.instance.ui.pauseUi.SetActive(false);
+        Time.timeScale = 1f;
+    }
+    public void ResumeGame() {
+        fsm.ChangeState(States.Game);
+    }
+
 }

@@ -26,12 +26,17 @@ public class Ui_ : MonoBehaviour {
     public GameObject EquippedItemsObject;
     [Header("Start")]
     public GameObject startUi;
-    
+    [Header("Pause")]
+    public GameObject pauseUi;
+    public Button quitButton;
+
     void Start() {
-        if(Game_.instance.rule_.fsm.State == States.Start){
+        if (Game_.instance.rule_.fsm.State == States.Start) {
             startUi.SetActive(true);
         }
         LoadMyItems();
+        pauseUi.SetActive(false);
+        quitButton.onClick.AddListener(() => Application.Quit());
     }
     public void UpdateEquippedItemsUI(List<int> equippedItems) {
         if (equippedItems.Count >= 1) {
