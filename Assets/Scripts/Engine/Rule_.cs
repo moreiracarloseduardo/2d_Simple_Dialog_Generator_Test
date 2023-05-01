@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using MonsterLove.StateMachine;
 
-public enum States { Start, Game, End, Win, Lose };
+public enum States { Start, Game, End, Win, Lose, Dialogue, Shop };
 
 public class Rule_ : MonoBehaviour {
     public StateMachine<States> fsm;

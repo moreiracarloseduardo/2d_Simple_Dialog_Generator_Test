@@ -24,6 +24,9 @@ public class Ui_ : MonoBehaviour {
     public Image firstItemSlot;
     public Image secondItemSlot;
     public GameObject EquippedItemsObject;
+    [Header("Start")]
+    public GameObject startUi;
+    
     void Start() {
         LoadMyItems();
     }

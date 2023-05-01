@@ -27,7 +27,9 @@ public class Player_ : MonoBehaviour {
         ProcessInput();
         UpdateAnimatorParameters();
         if (Input.GetKeyDown(KeyCode.Return)) {
-            OnInteractKeyPressed?.Invoke();
+            if (Game_.instance.rule_.fsm.State == States.Game) {
+                OnInteractKeyPressed?.Invoke();
+            }
         }
     }
 

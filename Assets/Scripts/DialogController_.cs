@@ -64,10 +64,10 @@ public class DialogController_ : MonoBehaviour {
 
     void StartDialogue() {
         isDialogueActive = true;
+        Game_.instance.rule_.fsm.ChangeState(States.Dialogue);
         Game_.instance.ui.avatar.sprite = dialogueEntries[currentLine].isPlayer ? playerAvatar : npcAvatar;
         Game_.instance.ui.dialoguePanelObject.SetActive(true);
         promptTextInstance.SetActive(false);
-        // currentLine = 0;
         StartCoroutine(TypewriterEffect(dialogueEntries[currentLine].text));
 
     }
@@ -95,6 +95,7 @@ public class DialogController_ : MonoBehaviour {
             firstDialogueCompleted = true;
             dialogueEntries = secondDialogueEntries;
         }
+        Game_.instance.rule_.fsm.ChangeState(States.Game);
     }
 
 

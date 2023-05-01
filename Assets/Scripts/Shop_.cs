@@ -37,7 +37,9 @@ public class Shop_ : MonoBehaviour {
     void CloseShop() {
         shopPanel.SetActive(false);
         Game_.instance.ui.MyItemsPanelObject.SetActive(false);
+        Game_.instance.rule_.fsm.ChangeState(States.Game);
     }
+    
 
     [System.Serializable]
     public struct ItemData {
