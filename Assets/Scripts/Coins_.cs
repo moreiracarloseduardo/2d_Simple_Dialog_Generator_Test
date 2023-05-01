@@ -12,8 +12,8 @@ public class Coins_ : MonoBehaviour {
     }
 
     private void CollectCoin() {
-        Game_.instance.rule_.Coins += coinValue;
+        Game_.instance.rule_.Coins += coinValue; // Increment coin count
         Game_.instance.audioFX.audioSourceMain.PlayOneShot(Game_.instance.audioFX.coinAudioClip);
-        Destroy(gameObject);
+        Destroy(gameObject); // Remove the collected coin from the scene
     }
 }

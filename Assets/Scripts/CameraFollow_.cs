@@ -3,9 +3,9 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class CameraFollow_ : MonoBehaviour {
-    public GameObject target; // Character to be followed
-    public float smoothing = 5f; // Camera movement smoothing
-    private Vector2 offset; // Offset between the camera and the character
+    public GameObject target; 
+    public float smoothing = 5f; 
+    private Vector2 offset; 
 
     void Start() {
         // Initialize the offset by calculating the difference between the camera and character positions

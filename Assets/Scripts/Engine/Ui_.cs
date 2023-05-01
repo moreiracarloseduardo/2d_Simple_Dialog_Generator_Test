@@ -39,6 +39,7 @@ public class Ui_ : MonoBehaviour {
         quitButton.onClick.AddListener(() => Application.Quit());
     }
     public void UpdateEquippedItemsUI(List<int> equippedItems) {
+        // Update the equipped items UI based on the equippedItems list
         if (equippedItems.Count >= 1) {
             firstItemSlot.sprite = GetItemSpriteById(equippedItems[0]);
             firstItemSlot.enabled = true;
@@ -67,6 +68,7 @@ public class Ui_ : MonoBehaviour {
         return null;
     }
     private void LoadMyItems() {
+        // Load the player's items and display them in the UI
         List<int> myItems = Game_.instance.inventory.GetEquippedItems();
         foreach (int itemId in myItems) {
             Shop_.ItemData itemData = Game_.instance.shop.GetItemDataById(itemId);
@@ -77,6 +79,7 @@ public class Ui_ : MonoBehaviour {
     }
 
     public MyItem_ AddMyItem(Shop_.ItemData itemData) {
+        // Instantiate a new item and add it to the UI
         GameObject newMyItem = Instantiate(myItemPrefab, MyItemsGridObject.transform);
         MyItem_ myItem = newMyItem.GetComponent<MyItem_>();
         myItem.itemId = itemData.itemId;

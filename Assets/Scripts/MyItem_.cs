@@ -19,6 +19,7 @@ public class MyItem_ : MonoBehaviour {
 
 
     void Start() {
+        // Initialize references, set up the button listener, and update UI elements
         inventory = Game_.instance.inventory;
         player = GameObject.FindWithTag("Player").GetComponent<Player_>();
         sellButton.onClick.AddListener(() => SellItem());
@@ -27,6 +28,7 @@ public class MyItem_ : MonoBehaviour {
     }
 
     public void SellItem() {
+        // Sell the item, update player's coins and inventory, and trigger the OnItemSold event
         Game_.instance.rule_.Coins += sellPrice;
         sellButton.interactable = false;
         inventory.RemoveItem(itemId);

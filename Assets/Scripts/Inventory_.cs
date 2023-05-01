@@ -10,30 +10,32 @@ public class Inventory_ : MonoBehaviour {
     }
 
     public void AddItem(int itemId) {
-        items.Add(itemId);
-        SaveItems();
+        items.Add(itemId); // Add item ID to the set
+        SaveItems(); // Save updated item set
     }
 
     public bool HasItem(int itemId) {
-        return items.Contains(itemId);
+        return items.Contains(itemId); // Check if the item set contains the given ID
     }
 
     public void RemoveItem(int itemId) {
-        items.Remove(itemId);
+        items.Remove(itemId); // Remove the item ID from the set
         SaveItems();
     }
 
     public List<int> GetEquippedItems() {
-        return items.ToList();
+        return items.ToList(); // Convert item set to a list and return
     }
 
     private void SaveItems() {
+        // Serialize the item set and save it in PlayerPrefs
         string itemsJson = JsonUtility.ToJson(new SerializableItems(items));
         PlayerPrefs.SetString("Inventory", itemsJson);
         PlayerPrefs.Save();
     }
 
     private void LoadItems() {
+        // If Inventory exists in PlayerPrefs, load and deserialize items
         if (PlayerPrefs.HasKey("Inventory")) {
             string itemsJson = PlayerPrefs.GetString("Inventory");
             SerializableItems loadedItems = JsonUtility.FromJson<SerializableItems>(itemsJson);

@@ -16,6 +16,7 @@ public class ShopItem_ : MonoBehaviour {
     private Inventory_ inventory;
 
     void Start() {
+        // Initialize references, set up UI components, and set up button actions
         inventory = Game_.instance.inventory;
         player = GameObject.FindWithTag("Player").GetComponent<Player_>();
         buyButton.onClick.AddListener(() => PurchaseItem());
@@ -24,6 +25,7 @@ public class ShopItem_ : MonoBehaviour {
     }
 
     public void PurchaseItem() {
+        // Purchase item if the player has enough coins, update inventory and player's animator, and add the item to MyItems
         if (Game_.instance.rule_.Coins >= price) {
             Game_.instance.rule_.Coins -= price;
             buyButton.interactable = false;
@@ -36,6 +38,7 @@ public class ShopItem_ : MonoBehaviour {
         }
     }
     private void AddItemToMyItems() {
+        // Instantiate a new MyItem in the MyItems grid and set up its properties, including the OnItemSold event
         GameObject newMyItem = Instantiate(Game_.instance.ui.myItemPrefab, Game_.instance.ui.MyItemsGridObject.transform);
         MyItem_ myItem = newMyItem.GetComponent<MyItem_>();
         myItem.itemId = itemId;
@@ -46,6 +49,7 @@ public class ShopItem_ : MonoBehaviour {
         myItem.OnItemSold += EnableBuyButton;
     }
     private void EnableBuyButton(int soldItemId) {
+        // Enable the buy button when the item is sold
         if (soldItemId == itemId) {
             buyButton.interactable = true;
         }

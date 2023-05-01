@@ -30,7 +30,7 @@ public class DialogController_ : MonoBehaviour {
 
     void Start() {
         playerTransform = GameObject.FindWithTag("Player").transform;
-
+        // Create a new instance of the prompt text and set it as a child of the canvas
         Canvas canvas = FindObjectOfType<Canvas>();
         promptTextInstance = Instantiate(Game_.instance.ui.promptTextPrefab, Game_.instance.ui.promptTextPrefab.transform.position, Quaternion.identity);
         promptTextInstance.transform.SetParent(canvas.transform, false);
@@ -45,6 +45,7 @@ public class DialogController_ : MonoBehaviour {
     }
 
     void CheckForPlayerInteraction() {
+        // Check if the player is close enough to interact with the NPC
         float distanceToPlayer = Vector2.Distance(transform.position, playerTransform.position);
 
         if (distanceToPlayer <= interactionDistance) {
@@ -99,6 +100,7 @@ public class DialogController_ : MonoBehaviour {
     }
 
 
+    // Coroutine to display the text one letter at a time
     IEnumerator TypewriterEffect(string text) {
         waitForPlayerInput = false;
         dialogueText.text = "";

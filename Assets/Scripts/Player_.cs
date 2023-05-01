@@ -17,6 +17,7 @@ public class Player_ : MonoBehaviour {
     public RuntimeAnimatorController playerSwordBlueController;
 
     void Start() {
+        // Initialize references and update the animator based on the items
         rb = GetComponent<Rigidbody2D>();
         animator = GetComponent<Animator>();
         inventory = Game_.instance.inventory;
@@ -24,6 +25,7 @@ public class Player_ : MonoBehaviour {
     }
 
     void Update() {
+        // Process input, update animator parameters, and check for interaction key press
         ProcessInput();
         UpdateAnimatorParameters();
         if (Input.GetKeyDown(KeyCode.Return)) {
@@ -38,6 +40,7 @@ public class Player_ : MonoBehaviour {
     }
 
     void ProcessInput() {
+        // Get raw input from the user and normalize the movement vector
         movement.x = Input.GetAxisRaw("Horizontal");
         movement.y = Input.GetAxisRaw("Vertical");
 
@@ -47,17 +50,20 @@ public class Player_ : MonoBehaviour {
     }
 
     void UpdateAnimatorParameters() {
+        // Set animator parameters based on movement
         animator.SetFloat("Horizontal", movement.x);
         animator.SetFloat("Vertical", movement.y);
         animator.SetFloat("Speed", movement.sqrMagnitude);
     }
 
     void MoveCharacter() {
+        // Update the position of the character based on the movement and game state
         if (Game_.instance.rule_.fsm.State == States.Game) {
             rb.MovePosition(rb.position + movement * moveSpeed * Time.fixedDeltaTime);
         }
     }
     public void UpdateAnimatorBasedOnItems() {
+        // Update the player's animator controller based on the equipped items
         Dictionary<(int, int), RuntimeAnimatorController> itemCombinations = new Dictionary<(int, int), RuntimeAnimatorController> {
             {(1, 0), playerSwordController},
             {(3, 0), playerBlueController},
