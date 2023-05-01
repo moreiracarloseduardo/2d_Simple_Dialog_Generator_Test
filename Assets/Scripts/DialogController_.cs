@@ -29,7 +29,6 @@ public class DialogController_ : MonoBehaviour {
     void Start() {
         playerTransform = GameObject.FindWithTag("Player").transform;
 
-        // Crie uma instância do promptText para este NPC como filho do Canvas
         Canvas canvas = FindObjectOfType<Canvas>();
         promptTextInstance = Instantiate(Game_.instance.ui.promptTextPrefab, Game_.instance.ui.promptTextPrefab.transform.position, Quaternion.identity);
         promptTextInstance.transform.SetParent(canvas.transform, false);
@@ -66,7 +65,6 @@ public class DialogController_ : MonoBehaviour {
         Game_.instance.ui.avatar.sprite = dialogueEntries[currentLine].isPlayer ? playerAvatar : npcAvatar;
         Game_.instance.ui.dialoguePanelObject.SetActive(true);
         promptTextInstance.SetActive(false);
-        // Remova a linha abaixo
         // currentLine = 0;
         StartCoroutine(TypewriterEffect(dialogueEntries[currentLine].text));
     }
@@ -107,7 +105,6 @@ public class DialogController_ : MonoBehaviour {
     }
 
     void OnDestroy() {
-        // Destrua a instância do promptText quando o NPC for destruído
         if (promptTextInstance != null) {
             Destroy(promptTextInstance);
         }

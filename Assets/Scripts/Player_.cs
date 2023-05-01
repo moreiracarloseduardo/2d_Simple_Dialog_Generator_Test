@@ -19,7 +19,7 @@ public class Player_ : MonoBehaviour {
     void Start() {
         rb = GetComponent<Rigidbody2D>();
         animator = GetComponent<Animator>();
-        inventory = Game_.instance.inventory; 
+        inventory = Game_.instance.inventory;
     }
 
     void Update() {
@@ -59,6 +59,7 @@ public class Player_ : MonoBehaviour {
             {(1, 0), playerSwordController},
             {(3, 0), playerBlueController},
             {(1, 3), playerSwordBlueController}
+
         };
 
         int firstItemId = inventory.HasItem(1) ? 1 : inventory.HasItem(3) ? 3 : 0;
@@ -70,5 +71,7 @@ public class Player_ : MonoBehaviour {
         } else {
             animator.runtimeAnimatorController = playerMainController;
         }
+        List<int> equippedItems = inventory.GetEquippedItems();
+        Game_.instance.ui.UpdateEquippedItemsUI(equippedItems);
     }
 }

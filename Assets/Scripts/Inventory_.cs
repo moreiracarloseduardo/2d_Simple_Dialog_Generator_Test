@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 
 public class Inventory_ : MonoBehaviour {
@@ -14,5 +15,8 @@ public class Inventory_ : MonoBehaviour {
     }
     public void RemoveItem(int itemId) {
         items.Remove(itemId);
+    }
+    public List<int> GetEquippedItems() {
+        return items.ToList();
     }
 }

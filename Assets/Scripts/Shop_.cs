@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using System.Linq;
 
 public class Shop_ : MonoBehaviour {
     public Button closeShopButton;
@@ -17,6 +18,9 @@ public class Shop_ : MonoBehaviour {
         shopPanel.SetActive(false);
         Game_.instance.ui.MyItemsPanelObject.SetActive(false);
         SetupShopItems();
+    }
+    public ItemData GetItemDataById(int itemId) {
+        return itemsData.FirstOrDefault(item => item.itemId == itemId);
     }
 
     void SetupShopItems() {
