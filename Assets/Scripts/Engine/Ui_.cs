@@ -24,6 +24,9 @@ public class Ui_ : MonoBehaviour {
     public Image firstItemSlot;
     public Image secondItemSlot;
     public GameObject EquippedItemsObject;
+    void Start() {
+        LoadMyItems();
+    }
     public void UpdateEquippedItemsUI(List<int> equippedItems) {
         if (equippedItems.Count >= 1) {
             firstItemSlot.sprite = GetItemSpriteById(equippedItems[0]);
@@ -51,5 +54,25 @@ public class Ui_ : MonoBehaviour {
         }
 
         return null;
+    }
+    private void LoadMyItems() {
+        List<int> myItems = Game_.instance.inventory.GetEquippedItems();
+        foreach (int itemId in myItems) {
+            Shop_.ItemData itemData = Game_.instance.shop.GetItemDataById(itemId);
+            if (itemData.itemId != 0) {
+                AddMyItem(itemData);
+            }
+        }
+    }
+
+    public MyItem_ AddMyItem(Shop_.ItemData itemData) {
+        GameObject newMyItem = Instantiate(myItemPrefab, MyItemsGridObject.transform);
+        MyItem_ myItem = newMyItem.GetComponent<MyItem_>();
+        myItem.itemId = itemData.itemId;
+        myItem.sellPrice = itemData.price / 2;
+        myItem.itemName = itemData.itemName;
+        myItem.itemSprite = itemData.itemSprite;
+
+        return myItem;
     }
 }

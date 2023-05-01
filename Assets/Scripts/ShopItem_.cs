@@ -29,7 +29,10 @@ public class ShopItem_ : MonoBehaviour {
             buyButton.interactable = false;
             Game_.instance.inventory.AddItem(itemId);
             player.UpdateAnimatorBasedOnItems();
-            AddItemToMyItems();
+
+            MyItem_ myItem = Game_.instance.ui.AddMyItem(Game_.instance.shop.GetItemDataById(itemId));
+            myItem.OnItemSold += EnableBuyButton;
+
         }
     }
     private void AddItemToMyItems() {
@@ -47,5 +50,6 @@ public class ShopItem_ : MonoBehaviour {
             buyButton.interactable = true;
         }
     }
+
 
 }
