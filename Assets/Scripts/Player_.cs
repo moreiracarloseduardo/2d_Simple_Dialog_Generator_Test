@@ -20,6 +20,7 @@ public class Player_ : MonoBehaviour {
         rb = GetComponent<Rigidbody2D>();
         animator = GetComponent<Animator>();
         inventory = Game_.instance.inventory;
+        UpdateAnimatorBasedOnItems();
     }
 
     void Update() {

@@ -20,7 +20,9 @@ public class DialogController_ : MonoBehaviour {
     private int currentLine = 0;
     private bool isDialogueActive = false;
     private bool waitForPlayerInput = false;
+    private bool firstDialogueCompleted = false;
     [SerializeField] private DialogueEntry[] dialogueEntries;
+    [SerializeField] private DialogueEntry[] secondDialogueEntries;
     [SerializeField] private Sprite npcAvatar;
     [SerializeField] private Sprite playerAvatar;
 
@@ -67,6 +69,7 @@ public class DialogController_ : MonoBehaviour {
         promptTextInstance.SetActive(false);
         // currentLine = 0;
         StartCoroutine(TypewriterEffect(dialogueEntries[currentLine].text));
+
     }
 
     void AdvanceDialogue() {
@@ -88,6 +91,10 @@ public class DialogController_ : MonoBehaviour {
         promptTextInstance.SetActive(true);
         OnDialogueEnd?.Invoke();
         currentLine = 0;
+        if (!firstDialogueCompleted) {
+            firstDialogueCompleted = true;
+            dialogueEntries = secondDialogueEntries;
+        }
     }
 
 

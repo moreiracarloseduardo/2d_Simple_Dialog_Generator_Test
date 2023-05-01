@@ -3840,6 +3840,9 @@ MonoBehaviour:
     text: Hello World
   - isPlayer: 0
     text: Hello World
+  secondDialogueEntries:
+  - isPlayer: 0
+    text: You again!
   npcAvatar: {fileID: 21300000, guid: 9edd100c1f9820e488e603a2ac380567, type: 3}
   playerAvatar: {fileID: -1153047240, guid: b43bff295e8d063439dd207214f13de0, type: 3}
 --- !u!114 &125838214
@@ -33669,6 +33672,9 @@ MonoBehaviour:
   dialogueEntries:
   - isPlayer: 0
     text: Hello World
+  secondDialogueEntries:
+  - isPlayer: 0
+    text: You Again
   npcAvatar: {fileID: 21300000, guid: 9edd100c1f9820e488e603a2ac380567, type: 3}
   playerAvatar: {fileID: -1153047240, guid: b43bff295e8d063439dd207214f13de0, type: 3}
 --- !u!1 &1093053162
