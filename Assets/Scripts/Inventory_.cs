@@ -12,4 +12,7 @@ public class Inventory_ : MonoBehaviour {
     public bool HasItem(int itemId) {
         return items.Contains(itemId);
     }
+    public void RemoveItem(int itemId) {
+        items.Remove(itemId);
+    }
 }

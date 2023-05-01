@@ -242,7 +242,7 @@ GameObject:
   - component: {fileID: 3885094908263158331}
   - component: {fileID: 3885094908263158328}
   m_Layer: 5
-  m_Name: Store Itens
+  m_Name: Store Items
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

@@ -15,6 +15,7 @@ public class Shop_ : MonoBehaviour {
         closeShopButton.onClick.AddListener(() => CloseShop());
         player = GameObject.FindWithTag("Player").GetComponent<Player_>();
         shopPanel.SetActive(false);
+        Game_.instance.ui.MyItemsPanelObject.SetActive(false);
         SetupShopItems();
     }
 
@@ -31,6 +32,7 @@ public class Shop_ : MonoBehaviour {
 
     void CloseShop() {
         shopPanel.SetActive(false);
+        Game_.instance.ui.MyItemsPanelObject.SetActive(false);
     }
 
     [System.Serializable]

@@ -29,6 +29,23 @@ public class ShopItem_ : MonoBehaviour {
             buyButton.interactable = false;
             Game_.instance.inventory.AddItem(itemId);
             player.UpdateAnimatorBasedOnItems();
+            AddItemToMyItems();
         }
     }
+    private void AddItemToMyItems() {
+        GameObject newMyItem = Instantiate(Game_.instance.ui.myItemPrefab, Game_.instance.ui.MyItemsGridObject.transform);
+        MyItem_ myItem = newMyItem.GetComponent<MyItem_>();
+        myItem.itemId = itemId;
+        myItem.sellPrice = price / 2;
+        myItem.itemName = itemName;
+        myItem.itemSprite = itemSprite;
+
+        myItem.OnItemSold += EnableBuyButton;
+    }
+    private void EnableBuyButton(int soldItemId) {
+        if (soldItemId == itemId) {
+            buyButton.interactable = true;
+        }
+    }
+
 }

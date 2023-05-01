@@ -14,5 +14,8 @@ public class Ui_ : MonoBehaviour {
     [Header("Coins")]
     public GameObject coinsObject;
     public TextMeshProUGUI coinsTotalText;
-    
+    [Header("My Items Panel")]
+    public GameObject MyItemsPanelObject;
+    public GameObject MyItemsGridObject;
+    public GameObject myItemPrefab;
 }
