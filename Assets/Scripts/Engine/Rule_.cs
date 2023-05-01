@@ -20,7 +20,7 @@ public class Rule_ : MonoBehaviour {
 
     void Awake() {
         fsm = StateMachine<States>.Initialize(this);
-        fsm.ChangeState(States.Game);
+        fsm.ChangeState(States.Start);
     }
     void Start() {
         LoadCoins();
@@ -31,5 +31,12 @@ public class Rule_ : MonoBehaviour {
         } else {
             Coins = 60;
         }
+    }
+
+    void Start_Enter() {
+    }
+    public void StartGame() {
+        fsm.ChangeState(States.Game);
+        Game_.instance.ui.startUi.SetActive(false);
     }
 }

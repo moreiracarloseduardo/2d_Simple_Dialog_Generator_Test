@@ -28,6 +28,9 @@ public class Ui_ : MonoBehaviour {
     public GameObject startUi;
     
     void Start() {
+        if(Game_.instance.rule_.fsm.State == States.Start){
+            startUi.SetActive(true);
+        }
         LoadMyItems();
     }
     public void UpdateEquippedItemsUI(List<int> equippedItems) {
